@@ -1,6 +1,14 @@
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+
+
+// #include 
 
 
 
-void main() {
+
+int main() {
 
 }
