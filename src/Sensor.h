@@ -10,9 +10,11 @@
 
 class Sensor { 
 private:
-	// todo: ADC adcObject 
+	ADC adc;
 	std::string name;
 	float currentValue;
+	float maxValue;
+	float minValue;
 
 public:
 	float read();	// Read the value of the sensor object
