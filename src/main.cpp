@@ -25,10 +25,10 @@ int main(void) {
     // Run Unit Test
     if (!runTests()) {
         std::cout << "[DEBUG] UNIT TEST FAILED" << std::endl;
+        return -1;
     }
     else {
         std::cout << "[DEBUG] UNIT TEST PASSED" << std::endl;
-        return -1;
     }
     
 

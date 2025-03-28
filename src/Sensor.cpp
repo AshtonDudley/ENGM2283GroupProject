@@ -3,4 +3,4 @@
 
 #include "Sensor.h"
 
-
+//Sensor::Sesnor() : adc

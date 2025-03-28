@@ -11,13 +11,14 @@
 class Sensor { 
 private:
 	ADC adc;
-	std::string name;
-	float currentValue;
-	float maxValue;
-	float minValue;
+	std::string type;	// sensor type
+	int adcChannel;		// adc channnel
 
 public:
-	float read();	// Read the value of the sensor object
-	std::string getNane();
+	//Sesnor();
+
+	
+	virtual float read();	// Read the value of the sensor object
 
 };
+

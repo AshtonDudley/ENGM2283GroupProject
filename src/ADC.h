@@ -12,6 +12,7 @@
 class ADC {
 private:
 	unsigned int adcResolution; 
+	
 
 public:
 	ADC(); 
