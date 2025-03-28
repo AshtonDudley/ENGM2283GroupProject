@@ -25,6 +25,7 @@
     <ClInclude Include="src\ThrottleSensor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ADC.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ThrottleSensor.cpp" />
   </ItemGroup>
