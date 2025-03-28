@@ -1,0 +1,58 @@
+# User-specific files
+.vs/
+.vscode/
+.idea/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugFinal/
+[Dd]ebug_x86/
+[Dd]ebug_x64/
+[Dd]ebug_ARM/
+[Dd]Release/
+[Dd]ReleaseFinal/
+[Dd]Release_x86/
+[Dd]Release_x64/
+[Dd]Release_ARM/
+x64/
+x86/
+arm/
+*.obj
+*.pdb
+*.idb
+*.ipdb
+*.iobj
+*.lib
+*.dll
+*.exe
+
+# User-specific files for Visual Studio
+*.user
+*.userosscache
+*.suo
+*.sdf
+*.opensdf
+*.vcxproj.user
+*.vcxproj.filters
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer generated files
+Thumbs.db
+ehthumbs.db
+
+# MacOS
+.DS_Store
+
+# Node.js or NPM files (if using with Node.js tools)
+node_modules/
+
+# Other
+.vs2019/
+.vs2017/
+.vs2015/
+.vs2008/
