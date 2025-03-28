@@ -1,3 +1,6 @@
+// main.cpp
+// Author: Ashton Dudley
+
 #include <string>
 #include <vector>
 #include <iostream>
@@ -11,4 +14,17 @@
 
 int main(void) {
 
+    // Program Entry Function
+
+    std::cout << "Hello World" << std::endl;
+
+
+    while (true) {
+        // Program State Machine
+
+        // TODO: Implement state machine dialog
+        break;
+        
+    }
+    return 0;
 }
