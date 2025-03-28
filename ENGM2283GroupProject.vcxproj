@@ -21,9 +21,12 @@
   <ItemGroup>
     <ClInclude Include="src\ADC.h" />
     <ClInclude Include="src\BrakeSensor.h" />
+    <ClInclude Include="src\Sensor.h" />
+    <ClInclude Include="src\ThrottleSensor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ThrottleSensor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

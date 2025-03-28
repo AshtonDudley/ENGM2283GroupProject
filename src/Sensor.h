@@ -1,7 +1,7 @@
 #pragma once
 
 // Base Sensor Header File 
-// Author: 
+// Author: Ashton Dudley
 
 class Sensor { 
 
