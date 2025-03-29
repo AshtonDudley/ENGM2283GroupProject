@@ -62,6 +62,7 @@ void testBrakeObject() {
 bool runTests(void) {
 
     std::cout << "[DEBUG] RUNNING TESTS" << std::endl;
+    assert(false); // testing GitHub Action
     testADCObject();
     testSensorObject();
     testThrottleObject();
