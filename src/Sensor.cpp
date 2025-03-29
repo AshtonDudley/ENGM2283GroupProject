@@ -3,4 +3,5 @@
 
 #include "Sensor.h"
 
-//Sensor::Sesnor() : adc
+Sensor::Sensor(ADC& adcRef, std::string ty, int ch)
+	: adc(adcRef), type(ty),  adcChannel(ch) {}
