@@ -43,6 +43,7 @@ void testADCObject() {
 
 void testSensorObject() {
     // todo
+    assert(false); // testing GitHub Action
     return;
 }
 
