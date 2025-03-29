@@ -14,7 +14,10 @@ on:
 env:
   # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: ENGM2283GroupProject.sln
+
+  # Build settings
   BUILD_CONFIGURATION: Release
+  BUILD_PLATFORM: x64
 
 permissions:
   contents: read
@@ -30,11 +33,15 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Restore NuGet packages
-      working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
 
-    - name: Build
-      working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+    - name: Build Solution
+      run: msbuild ${{env.SOLUTION_FILE_PATH}} /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:TreatWarningsAsErrors=true /p:ContinueOnError=false /verbosity:normal
+
+    - name: Verify Executable Was Built
+      run: |
+        if (-Not (Test-Path "x64\Release\ENGM2283GroupProject.exe")) {
+          Write-Error "ERROR: Executable not found. Build may have failed silently."
+          exit 1
+        }
+      shell: pwsh
