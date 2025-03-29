@@ -2,7 +2,7 @@
 // Author: Ashton Dudley
 // Lib
 
-#error "This should fail"
+//#error "This should fail"
 
 #include <string>
 #include <vector>
