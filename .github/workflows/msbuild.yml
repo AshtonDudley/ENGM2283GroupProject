@@ -45,6 +45,7 @@ jobs:
         /p:AdditionalOptions="/WX" `
         /verbosity:normal
 
+
     - name: Verify Executable Was Built
       run: |
         if (-Not (Test-Path "x64\Release\ENGM2283GroupProject.exe")) {
