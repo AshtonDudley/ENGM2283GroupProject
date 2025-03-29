@@ -7,6 +7,7 @@
 #include "ADC.h"
 #include <string>
 #include <cstdint>
+#include <iostream>
 
 class Sensor { 
 private:
@@ -17,8 +18,8 @@ private:
 public:
 	//Sesnor();
 
-	
-	virtual float read();	// Read the value of the sensor object
-
+		
+	void read(std::istream& in);		 // read the value of the sensor object
+	void write(std::ostream& out) const; // write converterd value of ADC to stream
 };
 
