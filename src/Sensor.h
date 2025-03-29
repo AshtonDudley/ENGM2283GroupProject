@@ -14,10 +14,10 @@ private:
 	ADC adc;
 	std::string type;	// sensor type
 	int adcChannel;		// adc channnel
-
+		
 public:
-	//Sesnor();
-
+	Sensor(ADC& adcRef, std::string ty, int ch);
+	virtual ~Sensor() = default;		 // virtual default destructor 
 		
 	void read(std::istream& in);		 // read the value of the sensor object
 	void write(std::ostream& out) const; // write converterd value of ADC to stream
