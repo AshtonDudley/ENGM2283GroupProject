@@ -38,12 +38,12 @@ jobs:
     - name: Build Solution
       run: |
         msbuild ${{env.SOLUTION_FILE_PATH}} `
-        /m `
-        /p:Configuration=${{env.BUILD_CONFIGURATION}} `
-        /p:Platform=${{env.BUILD_PLATFORM}} `
-        /p:TreatWarningsAsErrors=true `
-        /p:AdditionalOptions="/WX" `
-        /verbosity:normal
+          /m `
+          /p:Configuration=${{env.BUILD_CONFIGURATION}} `
+          /p:Platform=${{env.BUILD_PLATFORM}} `
+          /p:TreatWarningsAsErrors=true `
+          /p:AdditionalOptions="/WX" `
+          /verbosity:diagnostic
 
     - name: Verify Executable Was Built
       run: |
