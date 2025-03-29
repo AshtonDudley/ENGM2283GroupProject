@@ -32,8 +32,6 @@ void testADCObject() {
         int adc_value = adc.read();
         int adc_res = adc.getResolution();
 
-        std::cout << adc_value << std::endl;
-
         assert(adc_res == 8); // assert terminates the program if not true
     }
 
