@@ -40,7 +40,7 @@ void testADCObject() {
 
 void testSensorObject() {
     
-    // test single sensor 
+    // tests single sensor 
     if (1) {
         ADC adc;
         Sensor sensor(adc, "Sensor", 0);
@@ -57,7 +57,7 @@ void testSensorObject() {
         // todo: update value and check if value is correct
     }
 
-    // test multiple sensors
+    // tests multiple sensors
     if (1) {
         ADC adc(12, 4); // 12-bit resolution, 4 channel
 
@@ -76,6 +76,20 @@ void testSensorObject() {
         assert(sensor0.read() == 1024);     // check if data updated
         assert(sensor1.read() == 2048);
         }
+
+    // tests updateAndRead()
+    if (1) {
+        ADC adc;
+        Sensor sensor(adc, "Sensor", 0);
+
+        assert(sensor.getName() == "Sensor");
+        assert(sensor.read() == 0);
+
+        adc.setChannelValue(0, 64);       // update the ADC value
+
+
+        assert(sensor.updateAndRead() == 64);      // check if data updated
+    }
 
     std::cout << "[TEST] testSensorObject passed." << std::endl;
     return;

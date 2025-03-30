@@ -14,6 +14,11 @@ float Sensor::read() const {
 	return currentValue;
 }
 
+float Sensor::updateAndRead() {
+	currentValue = static_cast<float>(adc.read(adcChannel));
+	return currentValue;
+}
+
 std::string Sensor::getName() const {
 	return name;
 }
