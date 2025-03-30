@@ -14,7 +14,6 @@
 #include "BrakeSensor.h"
 #include "ThrottleSensor.h"
 #include "ADC.h"
-#include <iostream>
 
 
 // Object unit tests
@@ -40,8 +39,37 @@ void testADCObject() {
 }
 
 void testSensorObject() {
-    // todo
+    
+    // test single sensor 
+    if (1) {
+        ADC adc;
+        Sensor sensor(adc, "Sensor", 0);
 
+        assert(sensor.getName() == "Sensor");
+        assert(sensor.read() == 0);
+
+        // todo: update value and check if value is correct
+    }
+
+    // test multiple sensors
+    if (1) {
+        ADC adc(12, 4); // 12-bit resolution, 4 channel
+
+        Sensor sensor0(adc, "Sensor 0", 0); // sensors share an ADC
+        Sensor sensor1(adc, "Sensor 0", 1);
+
+        adc.setChannelValue(0, 1024);       // update the ADC value
+        adc.setChannelValue(1, 2048);       // update the ADC value
+
+        assert(sensor0.read() == 0);        
+        assert(sensor1.read() == 0);        
+            
+        sensor0.update();                   // tell sensor to read new 
+        sensor1.update();                   // data from the ADC 
+
+        assert(sensor0.read() == 1024);
+        assert(sensor1.read() == 2048);
+        }
 
     std::cout << "[TEST] testSensorObject passed." << std::endl;
     return;
