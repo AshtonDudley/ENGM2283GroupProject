@@ -11,7 +11,7 @@
 
 class Sensor { 
 private:
-	ADC adc;
+	ADC adc;			// composition
 	std::string type;	// sensor type
 	int adcChannel;		// adc channnel
 		

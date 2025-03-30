@@ -9,18 +9,23 @@
 
 #pragma once
 
+#include <vector>
+
 class ADC {
 private:
 	unsigned int adcResolution; 
-	
+	std::vector<int> buffer;
 
 public:
-	ADC(); 
-	ADC(unsigned int r);
-	void adcInit();	// initialize ADC hardware 
-	int read();		// read from the ADC
+	ADC(unsigned int resolution = 12, unsigned int numChannels = 8);
+	
+	// initialize ADC hardware
+	void adcInit();	 
+	
+	// set the simulated data in the adc
+	void setChannelValue(unsigned int channel, int value); 
+	
+	int read(unsigned int channel) const;		// read from the ADC
 	void setResolution(unsigned int resolution);
 	unsigned int getResolution();
-
-
 };
