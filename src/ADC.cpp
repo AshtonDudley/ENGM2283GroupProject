@@ -15,7 +15,7 @@ void ADC::adcInit() {
 
 void ADC::setChannelValue(unsigned int channel, int value) {
 	// ADC range [0..(2^n - 1)], where n is the adcResolution
-	int maxPossibleValue = (pow(2, adcResolution) - 1);
+	int maxPossibleValue = (1 << adcResolution) - 1; // (2^n - 1)
 	if (value > maxPossibleValue) { throw; }
 	buffer[channel] = value;
 }
