@@ -3,6 +3,7 @@
 // Base Sensor Header File 
 // Author: Ashton Dudley
 // Generic template for a typical automotive analog sensor.
+// This file is loosly based on the sensors used for the FSAE vehicle
 
 #include "ADC.h"
 #include <string>
@@ -11,15 +12,27 @@
 
 class Sensor { 
 private:
-	ADC adc;			// composition
-	std::string type;	// sensor type
-	int adcChannel;		// adc channnel
+	ADC& adc;					// composition, multiple object may share an ADC
+	std::string name;			// sensor name / id
+	unsigned int adcChannel;	// adc channnel
+	float currentValue = 0.0f;	// converted voltage of the sensor
 		
 public:
-	Sensor(ADC& adcRef, std::string ty, int ch);
-	virtual ~Sensor() = default;		 // virtual default destructor 
+	Sensor(ADC& adcRef, std::string n, int ch);
+	
+	// virtual default destructor
+	virtual ~Sensor() = default;		  
 		
-	void read(std::istream& in);		 // read the value of the sensor object
-	void write(std::ostream& out) const; // write converterd value of ADC to stream
-};
+	// update the value from the ADC
+	virtual void update();
 
+	// read the value of the sensor object
+	virtual float read() const;
+
+	// reads and updates the value from the ADC
+	virtual float updateAndRead();
+	
+	// get sensor name
+	virtual std::string getName() const;
+
+};
