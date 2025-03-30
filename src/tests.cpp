@@ -48,6 +48,12 @@ void testSensorObject() {
         assert(sensor.getName() == "Sensor");
         assert(sensor.read() == 0);
 
+        adc.setChannelValue(0, 64);       // update the ADC value
+
+        sensor.update();
+
+        assert(sensor.read() == 64);      // check if data updated
+
         // todo: update value and check if value is correct
     }
 
@@ -56,7 +62,7 @@ void testSensorObject() {
         ADC adc(12, 4); // 12-bit resolution, 4 channel
 
         Sensor sensor0(adc, "Sensor 0", 0); // sensors share an ADC
-        Sensor sensor1(adc, "Sensor 0", 1);
+        Sensor sensor1(adc, "Sensor 1", 1);
 
         adc.setChannelValue(0, 1024);       // update the ADC value
         adc.setChannelValue(1, 2048);       // update the ADC value
@@ -67,7 +73,7 @@ void testSensorObject() {
         sensor0.update();                   // tell sensor to read new 
         sensor1.update();                   // data from the ADC 
 
-        assert(sensor0.read() == 1024);
+        assert(sensor0.read() == 1024);     // check if data updated
         assert(sensor1.read() == 2048);
         }
 
