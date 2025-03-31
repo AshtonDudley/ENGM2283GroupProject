@@ -3,7 +3,7 @@
 
 #include "LinkedList.h"
 
-Node::Node(Sensor* x) 
+SensorNode::SensorNode(Sensor* x) 
 	: data(x), next(nullptr) { }
 
 

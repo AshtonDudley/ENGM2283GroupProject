@@ -11,11 +11,11 @@ void testLinkedList() {
 
 	if (1) { 
 		// Test reading data from Node
-		Node* ptr;	
+		SensorNode* ptr;	
 		ADC adc;
 		Sensor sensor(adc, "test", 0);
 
-		ptr = new Node(&sensor);
+		ptr = new SensorNode(&sensor);
 
 		assert(ptr->data->getName() == "test");
 
