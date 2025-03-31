@@ -20,8 +20,8 @@ void testLinkedList() {
 		assert(ptr->data->getName() == "test");
 
 		// Check ADC read
-
-		//assert(ptr->data->read() == 128); 
+		ptr->data->setAdcValue(128);
+		assert(ptr->data->read() == 128); 
 		
 
 	}

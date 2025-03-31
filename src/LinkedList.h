@@ -13,9 +13,9 @@ friend class LinkedList;
 private:
 public:
 	// todo: turn into template ?
-	const Sensor* data;	// data stored in the node. 
+	Sensor* data;	// data stored in the node. 
 	Node* next;			// pointer to next node in list
-	Node(const Sensor* x);	// data = x, next = NULL
+	Node(Sensor* x);	// data = x, next = NULL								todo: change to const
 };
 
 
