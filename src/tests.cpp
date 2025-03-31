@@ -12,6 +12,7 @@ bool runTests(void) {
     testSensorObject();
     testThrottleObject();
     testBrakeObject();
+    testLinkedList();
 
     return true;
 }
