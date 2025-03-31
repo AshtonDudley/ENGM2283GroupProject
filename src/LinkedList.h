@@ -8,22 +8,21 @@
 
 #include "Sensor.h"
 
-
-class node {
+class Node {
+friend class LinkedList;
 private:
-
 public:
-	// data stored in the node. Will likely change to sensor object
-	Sensor sensor;
-
-	// pointer to next node in list
-	node* next;		
+	// todo: turn into template ?
+	const Sensor* data;	// data stored in the node. 
+	Node* next;			// pointer to next node in list
+	Node(const Sensor* x);	// data = x, next = NULL
 };
 
 
 class LinkedList {
 private:
-
+	Node* start;	// top of the stack
+	int count;		// number of items/sensors
 
 public:
 

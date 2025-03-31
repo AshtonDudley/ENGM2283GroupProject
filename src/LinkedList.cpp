@@ -3,3 +3,8 @@
 
 #include "LinkedList.h"
 
+Node::Node(const Sensor* x) 
+	: data(x), next(nullptr) { }
+
+
+
