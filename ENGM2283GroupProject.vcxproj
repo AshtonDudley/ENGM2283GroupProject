@@ -29,7 +29,13 @@
     <ClCompile Include="src\ADC.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sensor.cpp" />
+    <ClCompile Include="src\testADC.cpp" />
+    <ClCompile Include="src\testBrake.cpp" />
+    <ClCompile Include="src\testLinkedList.cpp" />
     <ClCompile Include="src\tests.cpp" />
+    <ClCompile Include="src\testSensor.cpp" />
+    <ClCompile Include="src\testStateMachine.cpp" />
+    <ClCompile Include="src\testThrottle.cpp" />
     <ClCompile Include="src\ThrottleSensor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -127,8 +133,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError> 
-      <AdditionalOptions>/WX %(AdditionalOptions)</AdditionalOptions> 
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalOptions>/WX %(AdditionalOptions)</AdditionalOptions>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
