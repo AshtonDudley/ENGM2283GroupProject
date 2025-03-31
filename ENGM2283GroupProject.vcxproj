@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="src\ADC.h" />
     <ClInclude Include="src\BrakeSensor.h" />
+    <ClInclude Include="src\LinkedList.h" />
     <ClInclude Include="src\Sensor.h" />
     <ClInclude Include="src\tests.h" />
     <ClInclude Include="src\ThrottleSensor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ADC.cpp" />
+    <ClCompile Include="src\LinkedList.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sensor.cpp" />
     <ClCompile Include="src\testADC.cpp" />
