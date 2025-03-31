@@ -20,6 +20,9 @@ private:
 public:
 	Sensor(ADC& adcRef, std::string n, int ch);
 	
+	// 
+	void setAdcValue(int value);
+
 	// virtual default destructor
 	virtual ~Sensor() = default;		  
 		

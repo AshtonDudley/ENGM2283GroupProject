@@ -59,6 +59,16 @@ void testSensorObject() {
         assert(sensor.updateAndRead() == 64);      // check if data updated
     }
 
+    // tests setAdcValue()
+    if (1) {
+        ADC adc;
+        Sensor sensor(adc, "Sensor", 0);
+
+        sensor.setAdcValue(128);
+        assert(sensor.updateAndRead() == 128);
+
+    }
+
     std::cout << "[TEST] testSensorObject passed." << std::endl;
     return;
 }
