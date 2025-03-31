@@ -26,6 +26,8 @@ void testLinkedList() {
 
 	}
 
+	if (1)
+
 	
 	std::cout << "[TEST] testLinkedList passed. \n" << std::endl;
 
