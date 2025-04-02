@@ -2,6 +2,16 @@
 #include "Sensor.h"
 
 class BreakSensor :
-	Sensor {
+	public Sensor {
+
+protected:
+	bool isBreaking;
+
+public:
+	BreakSensor(void);
+	unsigned int read(void);
+	bool isBreaking(bool);
+	int toPSI(int);
+
 
 };
