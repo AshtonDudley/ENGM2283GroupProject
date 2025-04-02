@@ -17,7 +17,7 @@
 
 // Unit Testing
 #include "tests.h"
-
+using namespace std;
 
 int main(void) {
 
@@ -35,8 +35,8 @@ int main(void) {
     
 
     while (true) {
-        // Program State Machine
-
+        // Progra Smtate Machine
+        std::cout << "HELLO";
         // TODO: Implement state machine dialog
         break;
         
