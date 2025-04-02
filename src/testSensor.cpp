@@ -35,9 +35,6 @@ void testSensorObject() {
         adc.setChannelValue(0, 1024);       // update the ADC value
         adc.setChannelValue(1, 2048);       // update the ADC value
 
-        assert(sensor0.read() == 0);
-        assert(sensor1.read() == 0);
-
         sensor0.update();                   // tell sensor to read new 
         sensor1.update();                   // data from the ADC 
 
@@ -56,7 +53,7 @@ void testSensorObject() {
         adc.setChannelValue(0, 64);       // update the ADC value
 
 
-        assert(sensor.updateAndRead() == 64);      // check if data updated
+        assert(sensor.read() == 64);      // check if data updated
     }
 
     // tests setAdcValue()
@@ -65,9 +62,20 @@ void testSensorObject() {
         Sensor sensor(adc, "Sensor", 0);
 
         sensor.setAdcValue(128);
-        assert(sensor.updateAndRead() == 128);
+        assert(sensor.read() == 128);
 
     }
+
+    // tests print()
+    if (1) {
+        ADC adc;
+        Sensor sensor(adc, "PrintSensor", 0);
+        sensor.setAdcValue(128);
+
+        sensor.print(std::cout);
+        std::cout << std::endl;
+    }
+ 
 
     std::cout << "[TEST] testSensorObject passed." << std::endl;
     return;

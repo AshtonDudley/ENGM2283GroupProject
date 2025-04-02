@@ -17,3 +17,4 @@ void testADCObject();
 void testSensorObject();
 void testThrottleObject();
 void testBrakeObject();
+void testLinkedList();

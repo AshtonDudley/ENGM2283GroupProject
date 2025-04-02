@@ -30,12 +30,11 @@ public:
 	virtual void update();
 
 	// read the value of the sensor object
-	virtual float read() const;
+	virtual float read();
 
-	// reads and updates the value from the ADC
-	virtual float updateAndRead();
-	
 	// get sensor name
 	virtual std::string getName() const;
+
+	virtual void print(std::ostream& out) const;
 
 };
