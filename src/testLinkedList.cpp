@@ -59,11 +59,7 @@ void testLinkedList() {
 		// Get data from stack
 		Sensor* result = stack.retrieve("Sensor 2");
 		assert(result->getName() == "Sensor 2");
-
-
-
-
-
+	
 	}
 
 	

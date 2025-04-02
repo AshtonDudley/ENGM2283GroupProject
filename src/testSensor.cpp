@@ -73,6 +73,7 @@ void testSensorObject() {
         sensor.setAdcValue(128);
 
         sensor.print(std::cout);
+        std::cout << std::endl;
     }
  
 
