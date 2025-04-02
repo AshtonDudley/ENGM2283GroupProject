@@ -54,41 +54,67 @@ public:
 };
 
 template <class T>
+Node<T>::Node(const T& x) : data(x), next(nullptr) {}
+
+
+template <class T>
 stack<T>::stack() : start(nullptr), sensorCount(0) {}
 
 
 template<class T>
 inline void stack<T>::store(const T& item) {
-
+    Node<T>* newNode = new Node<T>(item);
+    newNode->next = start;
+    start = newNode;
+    sensorCount++;
 }
 
 template<class T>
-inline T& stack<T>::top(void) const {
-    return nullptr;
+T& stack<T>::top(void) const {
+    if (empty()) {
+        throw std::runtime_error("Stack is empty");
+    }
+    return start->data;
 }
+
 
 template<class T>
 inline T& stack<T>::retrieve(string sensorID) const {
-    return nullptr;
+    Node<T>* current = start;
+    while (current != nullptr) {
+        if (current->data->getID() == sensorID) {
+            return current->data;
+        }
+        current = current->next;
+    }
+    throw cout << "ID not found: " << sensorID << std::endl;
 }
-
 template<class T>
 inline void stack<T>::remove(void) {
-
+    if (empty()) {
+        throw std::runtime_error("Stack is empty");
+    }
+    Node<T>* temp = start;
+    start = start->next;
+    delete temp;
+    sensorCount--;
 }
 
 template<class T>
 inline int stack<T>::count(void) const {
-    return 0;
+    return sensorCount;
 }
 
 template<class T>
 inline bool stack<T>::empty(void) const {
-    return false;
+    return (sensorCount == 0);
 }
 
 template<class T>
 inline void stack<T>::clear() {
+    while (!empty()) {
+        remove();
+    }
 }
 
 template<class T>
