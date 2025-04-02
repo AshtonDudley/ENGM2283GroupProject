@@ -27,4 +27,9 @@ std::string Sensor::getName() const {
 
 void Sensor::setAdcValue(int value) {
 	adc.setChannelValue(adcChannel, value);
+	currentValue = static_cast<float>(adc.read(adcChannel));
+}
+
+void Sensor::print(std::ostream& out) const {
+	out << "Sensor Name: " << name << ", ADC Channel: " << adcChannel << ", Value: " << currentValue << std::endl;
 }

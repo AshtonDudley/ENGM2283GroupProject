@@ -35,4 +35,6 @@ public:
 	// get sensor name
 	virtual std::string getName() const;
 
+	virtual void print(std::ostream& out) const;
+
 };

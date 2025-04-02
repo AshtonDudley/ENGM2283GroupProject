@@ -119,6 +119,11 @@ inline void stack<T>::clear() {
 
 template<class T>
 inline void stack<T>::write(std::ostream& out) const {
+    Node<T>* current = start;
+    while (current != nullptr) {
+        out << *(current->data) << std::endl;  // assuming T is a pointer and operator<< is overloaded for *T
+        current = current->next;
+    }
 }
 
 
