@@ -77,17 +77,17 @@ T& stack<T>::top(void) const {
     return start->data;
 }
 
-
+// Currently a simple while loop. Will need to be replaced with searching algorithm
 template<class T>
 inline T& stack<T>::retrieve(string sensorID) const {
     Node<T>* current = start;
     while (current != nullptr) {
-        if (current->data->getID() == sensorID) {
+        if (current->data->getName() == sensorID) {
             return current->data;
         }
         current = current->next;
     }
-    throw cout << "ID not found: " << sensorID << std::endl;
+    cout << "ID not found: " << sensorID << std::endl;
 }
 template<class T>
 inline void stack<T>::remove(void) {
