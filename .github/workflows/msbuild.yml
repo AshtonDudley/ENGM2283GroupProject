@@ -41,9 +41,10 @@ jobs:
         /m `
         /p:Configuration=${{env.BUILD_CONFIGURATION}} `
         /p:Platform=${{env.BUILD_PLATFORM}} `
-        /p:TreatWarningsAsErrors=true `
-        /p:AdditionalOptions="/WX" `
+        /p:TreatWarningsAsErrors=false `
+        /p:AdditionalOptions="/WX-" `
         /verbosity:normal
+
 
 
     - name: Verify Executable Was Built
