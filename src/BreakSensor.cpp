@@ -7,16 +7,16 @@ BreakSensor::BreakSensor(void) {
 }
 
 float BreakSensor::read() {
-	Sensor::read();
+	int currentValue = Sensor::read();
 }
 
-bool BreakSensor::isBreaking(float) {
+bool BreakSensor::isBreaking(void) {
 	if (currentValue > 10.0) {
 		return true;
 	}
 }
 
-float BreakSensor::toPSI(float) {
+float BreakSensor::toPSI(int) {
 	int PSI; 
 	int PSImax = 100;
 	int PSImin = 0;

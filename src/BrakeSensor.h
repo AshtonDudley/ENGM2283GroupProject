@@ -10,6 +10,6 @@ protected:
 public:
 	BreakSensor(void);
 	float read();
-	bool isBreaking(float);
-	int toPSI(int);
+	bool isBreaking(void);
+	float toPSI();
 };
