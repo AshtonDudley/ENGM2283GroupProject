@@ -7,12 +7,12 @@ Sensor::Sensor(ADC& adcRef, std::string n, int ch)
 	: adc(adcRef), name(n), adcChannel(ch) { }
 
 void Sensor::update() {
-	currentValue = static_cast<float>(adc.read(adcChannel));
+	currentValue = (adc.read(adcChannel));
 }
 
 // Read and update the current adc Value
 unsigned int Sensor::read() {
-	currentValue = adc.read(adcChannel);
+	update();
 	return currentValue;
 }
 
