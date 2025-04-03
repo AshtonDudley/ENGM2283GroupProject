@@ -15,12 +15,11 @@ private:
 	ADC& adc;					// composition, multiple object may share an ADC
 	std::string name;			// sensor name / id
 	unsigned int adcChannel;	// adc channnel
-	float currentValue = 0.0f;	// converted voltage of the sensor
+	unsigned int currentValue = 0;	// converted voltage of the sensor
 		
 public:
 	Sensor(ADC& adcRef, std::string n, int ch);
 	
-	// 
 	void setAdcValue(int value);
 
 	// virtual default destructor
@@ -30,7 +29,7 @@ public:
 	virtual void update();
 
 	// read the value of the sensor object
-	virtual float read();
+	virtual unsigned int read();
 
 	// get sensor name
 	virtual std::string getName() const;

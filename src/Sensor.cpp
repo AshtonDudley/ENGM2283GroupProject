@@ -11,15 +11,10 @@ void Sensor::update() {
 }
 
 // Read and update the current adc Value
-float Sensor::read() {
-	currentValue = static_cast<float>(adc.read(adcChannel));
+unsigned int Sensor::read() {
+	currentValue = adc.read(adcChannel);
 	return currentValue;
 }
-
-//float Sensor::updateAndRead() {
-//	currentValue = static_cast<float>(adc.read(adcChannel));
-//	return currentValue;
-//}
 
 std::string Sensor::getName() const {
 	return name;
