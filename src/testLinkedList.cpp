@@ -6,7 +6,7 @@
 #include "Sensor.h"
 #include "ADC.h"
 
-// using namespace std;
+using namespace std;
 
 void testLinkedList() {
 
@@ -47,7 +47,7 @@ void testLinkedList() {
 	}
 
 	
-	std::cout << "[TEST] testLinkedList passed. \n" << std::endl;
+	cout << "[TEST] testLinkedList passed." << endl;
 
 	return;
 }
