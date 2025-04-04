@@ -80,7 +80,7 @@ bool runMenu() {
 
     while (userInput != 'q') {
 
-        
+      
         userInput = printMenu();
 
         switch(userInput){
@@ -95,22 +95,26 @@ bool runMenu() {
             break;
 
         case 'd': {
-            cout << endl << endl << "choose a sensor id" << endl;
-            string idInput = userInputSensorId();
-            cout << "Selected: " << idInput << endl;
+            if (list.empty()) {
+                cout << endl << "unable to delete... the list is empty" << endl;
+            }
+            else {
+                cout << endl << endl << "choose a sensor id" << endl;
+                string idInput = userInputSensorId();
+                cout << "Selected: " << idInput << endl;
             
-            Sensor* result = list.retrieve("s0");
-            result->getName();
+                Sensor* result = list.retrieve("s0");
+                result->getName();
                 
-            list.remove();
-
+                list.remove(result);
+            }
             break;
         }
         case 's':
             break;
         
         case 'c': {
-            if (list.count() == 0) {
+            if (list.empty()) {
                 cout << endl << "the list is empty" << endl; 
             }
             else {
