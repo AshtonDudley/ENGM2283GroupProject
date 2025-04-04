@@ -13,7 +13,6 @@ unsigned int ThrottleSensor::read()
 	return Sensor::read();
 }
 
-
 float ThrottleSensor::convertToVolt()
 {
 	float Volts;
@@ -31,7 +30,8 @@ float ThrottleSensor::convertToVolt()
 
 void ThrottleSensor::print(ostream& out)  {
 	Sensor::print(out);
-	out << "Min Throttle: " << minThrottle << " Max Throttle: " << maxThrottle << " Volts: ";
+	//out << "Min Throttle: " << minThrottle << " Max Throttle: " << maxThrottle << " MilVolts: ";
+	out << "Milivolts: ";
 	out << convertToVolt();
 }
 

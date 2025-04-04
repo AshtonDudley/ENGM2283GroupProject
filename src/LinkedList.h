@@ -38,11 +38,12 @@ public:
     T& top(void) const;                         // return the item at the top of the stack
     T& retrieve(string sensorID) const;         // search and return item (using searching algorithm)
     bool remove(void);
-    bool remove(T Pointer);                          // remove the node at the top of the stack
+    bool remove(T Pointer);                     // remove the node at the top of the stack
     int count(void) const;                      // return count
     bool empty(void) const;                     // check for empty stack
     void clear();                               // clear the list
     void write(std::ostream& out) const;        // send the stored data to out
+    void sort();                                // sorts using bubble sort
 };
 
 template <class T>
@@ -172,6 +173,33 @@ inline void stack<T>::write(std::ostream& out) const {
 
 }
 
+// Bubble Sort
+// source: https://www.programiz.com/dsa/bubble-sort
+template<class T>
+inline void stack<T>::sort() {
+    if (empty()) {
+        return;
+    }
+    
+    // 
+    for (int i = 0; i < sensorCount - 1; i++) {
+        // travel through linked list
+        Node<T>* current = start;
+        Node<T>* nextNode = current->next;
+
+        for (int j = 0; j < sensorCount - i - 1; j++) {
+            // check and swap
+            if (current->data->read() > nextNode->data->read()) {
+                T temp = current->data;
+                current->data = nextNode->data;
+                nextNode->data = temp;
+            }
+        }
+        current = nextNode;
+        nextNode = current->next;
+    }
+
+}
 
 
 

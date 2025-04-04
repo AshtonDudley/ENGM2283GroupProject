@@ -69,17 +69,12 @@ bool runMenu() {
         BrakeSensor* b0 = new BrakeSensor(adc, "b0", 4);
         ThrottleSensor* t0 = new ThrottleSensor(adc, "t0", 5);
    
-        b0->print(cout);
-        t0->print(cout);
-
         list.store(s2);
         list.store(s1);
         list.store(s0);
         list.store(s3);
         list.store(t0);
         list.store(b0);
-
-
     }
 
     
@@ -123,6 +118,8 @@ bool runMenu() {
             break;
         }
         case 's':
+            cout << endl << "sorting list" << endl;
+            list.sort();
             break;
         
         case 'c': {
