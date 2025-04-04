@@ -8,12 +8,14 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-
+#include <algorithm> 
 // Objects
 #include "Sensor.h"
 #include "BrakeSensor.h"
 #include "ThrottleSensor.h"
 #include "ADC.h"
+#include "LinkedList.h"  // contains stack<T> and SensorNode
+#include "tests.h"
 
 // Unit Testing
 #include "tests.h"
@@ -148,6 +150,6 @@ int main(void) {
         sensorDB.remove();
     }
 
-    cout << "[DEBUG] PROGRAM ENDED" << endl;
+   
     return 0;
 }
