@@ -18,6 +18,11 @@
 using namespace std;
 
 
+void randomizeAdcValues(ADC& adc) {
+
+}
+
+
 
 string userInputSensorId(void) {
     
@@ -36,10 +41,11 @@ char printMenu() {
     cout << "2 - store brake pressure sensor" << endl;
     cout << "3 - store throttle position sensor" << endl;
     cout << "p - print the full list" << endl;
-    cout << "d - delete sensor" << endl; // sub menu --> enter seneor id
+    cout << "d - delete sensor" << endl;                    // sub menu --> enter seneor id
     cout << "s - sort by sensors current value" << endl;
-    cout << "c - count total number of sensors" << endl; // say if list is empty 
+    cout << "c - count total number of sensors" << endl;    // say if list is empty 
     cout << "x - clear the list" << endl; 
+    cout << "r - set random ADC values" << endl;             // used to simulate an ADC
     
 
     cout << "q - quit" << endl << endl;
@@ -80,11 +86,12 @@ bool runMenu() {
 
     }
 
-
+    
     while (userInput != 'q') {
 
       
         userInput = printMenu();
+        
 
         switch(userInput){
         case 0:
@@ -134,12 +141,42 @@ bool runMenu() {
             cout << endl << "clearing " << list.count() << " items from the list" << endl;
             list.clear();
             break;
-        case '1':
+        case '1': {
+            string id;
+            int ch;
+            cout << "snter sensor ID: ";
+            cin >> id;
+            cout << "snter ADC channel (0-7): ";
+            cin >> ch;
+            Sensor* s = new Sensor(adc, id, ch);
+            list.store(s);
+            cout << "stored generic sensor: " << id << endl;
             break;
-        case '2':
+        }
+        case '2': {
+            string id;
+            int ch;
+            cout << "snter brake sensor ID: ";
+            cin >> id;
+            cout << "snter ADC channel (0-7): ";
+            cin >> ch;
+            BrakeSensor* b = new BrakeSensor(adc, id, ch);
+            list.store(b);
+            cout << "stored brake sensor: " << id << endl;
             break;
-        case '3':
+        }
+        case '3': {
+            string id;
+            int ch;
+            cout << "enter throttle sensor ID: ";
+            cin >> id;
+            cout << "enter ADC channel (0-7): ";
+            cin >> ch;
+            ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
+            list.store(t);
+            cout << "stored throttle sensor: " << id << endl;
             break;
+        }
         default:    
             cout << endl << "invalid entry" << endl;
             break;
