@@ -2,22 +2,22 @@
 // Author: Jack Parlee
 
 #pragma once
-
+using namespace std;
 #include "Sensor.h"
 #include "ADC.h"
 #include <cstdbool>
 
-class ThottleSensor :
+class ThrottleSensor :
 	public Sensor {
 
 private:
-	unsigned int minThottle;
-	unsigned int maxThottle;
+	unsigned int minThrottle;
+	unsigned int maxThrottle;
 
 
 public:
-	ThottleSensor(ADC& adcRef, std::string n, int ch);
+	ThrottleSensor(ADC& adcRef, string n, int ch);
 	unsigned int read();
 	float convertToVolt();
-	void print(std::ostream& out) const;
+	void print(ostream& out);
 };

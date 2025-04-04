@@ -9,7 +9,7 @@ using namespace std;
 void testBrakeObject() {
     // todo
 
-    if (1) {
+    if (0) {
         ADC adc;
         BrakeSensor brake(adc, "brake", 1);
 

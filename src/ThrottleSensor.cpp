@@ -2,24 +2,34 @@
 // Author: Jack Parlee
 
 #include "ThrottleSensor.h"
+using namespace std;
 
-ThottleSensor::ThottleSensor(ADC& adcRef, std::string n, int ch)
-	: Sensor(adcRef, n, ch), minThottle(0), maxThottle(0) {
+ThrottleSensor::ThrottleSensor(ADC& adcRef, std::string n, int ch)
+	: Sensor(adcRef, n, ch), minThrottle(0), maxThrottle(0) {
 }
 
-unsigned int ThottleSensor::read()
+unsigned int ThrottleSensor::read()
 {
-	return 0;
+	return Sensor::read();
 }
 
 
-float ThottleSensor::convertToVolt()
+float ThrottleSensor::convertToVolt()
 {
-	return 0.0f;
+	float Volts;
+	int minADC = 0;
+	int maxADC = 1028;
+
+	Volts = minThrottle + (((currentValue - minADC) * (maxThrottle - minThrottle)) / (maxADC - minADC));
+
+	return Volts;
 }
 
-void ThottleSensor::print(std::ostream& out) const
+void ThrottleSensor::print(ostream& out)
 {
-
+	Sensor::print(out);
+	cout << "Min Throttle: " << minThrottle << "Max Throttle: " << maxThrottle << "Volts: ";
+	out << convertToVolt();
+	cout << endl;
 }
 
