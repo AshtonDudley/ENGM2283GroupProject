@@ -11,7 +11,7 @@
 #include <iostream>
 
 class Sensor { 
-private:
+protected:
 	ADC& adc;					// composition, multiple object may share an ADC
 	std::string name;			// sensor name / id
 	unsigned int adcChannel;	// adc channnel
