@@ -4,11 +4,11 @@
 class BreakSensor :
 	 Sensor {
 
-protected:
+private:
 	bool isBreaking;
 
 public:
-	BreakSensor(void);
+	BreakSensor(ADC& adcRef, std::string n, int ch);
 	float read();
 	bool isBreaking(void);
 	float toPSI();
