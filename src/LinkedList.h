@@ -72,7 +72,8 @@ inline void stack<T>::store(const T& item) {
 template<class T>
 T& stack<T>::top(void) const {
     if (empty()) {
-        throw std::runtime_error("Stack is empty");
+        // error
+        return nullptr;
     }
     return start->data;
 }
@@ -88,11 +89,13 @@ inline T& stack<T>::retrieve(string sensorID) const {
         current = current->next;
     }
     cout << "ID not found: " << sensorID << std::endl;
+    throw std::runtime_error("error");
+
 }
 template<class T>
 inline void stack<T>::remove(void) {
     if (empty()) {
-        throw std::runtime_error("Stack is empty");
+        throw std::runtime_error("error");
     }
     Node<T>* temp = start;
     start = start->next;
