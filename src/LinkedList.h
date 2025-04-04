@@ -133,7 +133,6 @@ inline bool stack<T>::remove(T ptr) {
         
     }
 
-
     delete current;
     delete prev;
 

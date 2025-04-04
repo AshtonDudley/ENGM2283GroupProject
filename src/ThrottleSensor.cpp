@@ -5,7 +5,7 @@
 using namespace std;
 
 ThrottleSensor::ThrottleSensor(ADC& adcRef, std::string n, int ch)
-	: Sensor(adcRef, n, ch), minThrottle(0), maxThrottle(0) {
+	: Sensor(adcRef, n, ch), minThrottle(0), maxThrottle(4096) {
 }
 
 unsigned int ThrottleSensor::read()
@@ -16,22 +16,18 @@ unsigned int ThrottleSensor::read()
 float ThrottleSensor::convertToVolt()
 {
 	float Volts;
-	int minADC = 0;
-	maxThrottle = (2 << adc.getResolution()) - 1;	// get max possible value of the sensor
-	int maxADC = maxThrottle;
+	float minSensorVoltage = 250.0f;
+	float maxSensorVoltage = 4500.0f;
 
-	// casting to float, to fix github action warning
-	float range = static_cast<float>(maxThrottle - minThrottle);
-	float adcRange = static_cast<float>(maxADC - minADC);
-	Volts = minThrottle + ((static_cast<float>(currentValue - minADC) * range) / adcRange);
+	Volts = minThrottle + (((currentValue - minSensorVoltage) * (maxThrottle - minThrottle)) / (maxSensorVoltage - minSensorVoltage));
 
 	return Volts;
 }
 
 void ThrottleSensor::print(ostream& out)  {
 	Sensor::print(out);
-	//out << "Min Throttle: " << minThrottle << " Max Throttle: " << maxThrottle << " MilVolts: ";
-	out << "Milivolts: ";
+	out << "Min Throttle: " << minThrottle << ", Max Throttle: " << maxThrottle;
+	out << ", Milivolts: ";
 	out << convertToVolt();
 }
 
