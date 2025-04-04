@@ -1,15 +1,22 @@
-//#pragma once
-//#include "Sensor.h"
-//
-//class BreakSensor :
-//	 Sensor {
-//
-//private:
-//	bool isBreaking;
-//
-//public:
-//	BreakSensor(ADC& adcRef, std::string n, int ch);
-//	float read();
-//	bool isBreaking(void);
-//	float toPSI();
-//};
+// BrakeSensor.h
+// Author: Jack Parlee
+
+#pragma once
+
+#include "Sensor.h"
+#include "ADC.h"
+#include <cstdbool>
+
+class BrakeSensor :
+	 public Sensor {
+
+private:
+	bool braking;
+
+public:
+	BrakeSensor(ADC& adcRef, std::string n, int ch);
+	unsigned int read();
+	bool isBraking(void);
+	float convertToPSI();
+	void print(std::ostream& out) const;
+};

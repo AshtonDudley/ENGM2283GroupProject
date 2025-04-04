@@ -1,13 +1,27 @@
-//#include "ThrottleSensor.h"
-//
-//ThrottleSensor(ADC& adcRef, std::string n, int ch, float maxThrottle, float minThrottle) {
-//
-//};
-//
-//unsigned int read(int) {
-//
-//};
-//
-//float toVolts(unsigned int) {
-//	PSI = PSImin + ((currentValue - ADCMinValue) * (PSImax - PSImin)) / (ADCMaxValue - ADCMinValue); //linear interpolation of psi
-//};
+// ThrottleSensor.cpp
+// Author: Jack Parlee
+
+#include "ThrottleSensor.h"
+
+ThottleSensor::ThottleSensor(ADC& adcRef, std::string n, int ch) 
+	: Sensor(adcRef, n, ch), minThottle(0), maxThottle(0) { }
+
+unsigned int ThottleSensor::read()
+{
+	return 0;
+}
+
+bool ThottleSensor::isBraking(void)
+{
+	return false;
+}
+
+float ThottleSensor::convertToPSI()
+{
+	return 0.0f;
+}
+
+void ThottleSensor::print(std::ostream& out) const
+{
+}
+

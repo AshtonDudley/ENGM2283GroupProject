@@ -28,7 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ADC.cpp" />
-    <ClCompile Include="src\BreakSensor.cpp" />
+    <ClCompile Include="src\BrakeSensor.cpp" />
     <ClCompile Include="src\LinkedList.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Sensor.cpp" />

@@ -1,17 +1,24 @@
-//#pragma once
-//#include "Sensor.h"
-//
-//class ThrottleSensor :
-//    public Sensor {
-//
-//private:
-//    float maxThrottle;
-//    float mixThrottle;
-//
-//private:
-//    ThrottleSensor(ADC& adcRef, std::string n, int ch, float maxThrottle, float minThrottle);
-//    unsigned int read(int);
-//    float toVolts(unsigned int);
-//
-//};
-//
+// ThottleSensor.h
+// Author: Jack Parlee
+
+#pragma once
+
+#include "Sensor.h"
+#include "ADC.h"
+#include <cstdbool>
+
+class ThottleSensor :
+	public Sensor {
+
+private:
+	unsigned int minThottle;
+	unsigned int maxThottle;
+
+
+public:
+	ThottleSensor(ADC& adcRef, std::string n, int ch);
+	unsigned int read();
+	bool isBraking(void);
+	float convertToPSI();
+	void print(std::ostream& out) const;
+};
