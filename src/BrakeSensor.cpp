@@ -1,5 +1,5 @@
 //file: BreakSensor.cpp
-
+// Author: Jack Parlee
 #include "BrakeSensor.h"
 
 BrakeSensor::BrakeSensor(ADC& adcRef, std::string n, int ch)
@@ -12,7 +12,12 @@ unsigned int BrakeSensor::read()
 
 bool BrakeSensor::isBraking(void)
 {
-	return false;
+	if (currentValue > 10) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 float BrakeSensor::convertToPSI() 

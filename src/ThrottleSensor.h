@@ -18,7 +18,6 @@ private:
 public:
 	ThottleSensor(ADC& adcRef, std::string n, int ch);
 	unsigned int read();
-	bool isBraking(void);
-	float convertToPSI();
+	float convertToVolt();
 	void print(std::ostream& out) const;
 };
