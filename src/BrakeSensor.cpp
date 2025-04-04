@@ -29,7 +29,9 @@ float BrakeSensor::convertToPSI()
 	int minADC = 0;
 	int maxADC = 1028;
 
-	PSI = minPSI + (((currentValue - minADC) * (maxPSI - minPSI)) / (maxADC - minADC));
+	float range = static_cast<float>(maxPSI - minPSI);
+	float adcRange = static_cast<float>(maxADC - minADC);
+	PSI = minPSI + ((static_cast<float>(currentValue - minADC) * range) / adcRange);
 
 	return PSI;
 }
