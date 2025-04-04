@@ -86,7 +86,7 @@ inline T& stack<T>::retrieve(string sensorID) const {
 template<class T>
 inline void stack<T>::remove(void) {
     if (empty()) {
-        throw std::runtime_error("error");
+        throw std::runtime_error("error"); // added to fix github action warning
     }
     Node<T>* temp = start;
     start = start->next;
@@ -115,13 +115,16 @@ template<class T>
 inline void stack<T>::write(std::ostream& out) const {
     Node<T>* current = start;
     
-    out << endl;
+    out << endl << "start of list ---> " << endl << endl;
     
     while (current != nullptr) {
         current->data->print(out); // print sensor data
         out << endl;    
         current = current->next;
-    }
+    } 
+
+    out << endl << "<--- end of list " << endl;
+
 }
 
 

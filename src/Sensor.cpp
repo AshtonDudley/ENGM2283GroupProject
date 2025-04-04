@@ -26,5 +26,5 @@ void Sensor::setAdcValue(int value) {
 }
 
 void Sensor::print(std::ostream& out) const {
-	out << "Sensor Name: " << name << ", ADC Channel: " << adcChannel << ", Value: " << currentValue;
+	out << "Sensor ID: " << name << ", ADC Channel: " << adcChannel << ", Value: " << currentValue;
 }

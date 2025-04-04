@@ -19,6 +19,13 @@ using namespace std;
 
 
 
+string userInputSensorId(void) {
+    
+    string userInput;
+    cin >> userInput;
+    return userInput;
+}
+
 
 char printMenu() {
 
@@ -57,10 +64,16 @@ bool runMenu() {
         Sensor* s2 = new Sensor(adc, "s2", 2);
         Sensor* s3 = new Sensor(adc, "s3", 3);
 
+        BrakeSensor* b0 = new BrakeSensor(adc, "b0", 4);
+        ThrottleSensor* t0 = new ThrottleSensor(adc, "t0", 5);
+    
         list.store(s2);
         list.store(s1);
         list.store(s0);
         list.store(s3);
+        list.store(t0);
+        list.store(b0);
+
 
     }
 
@@ -73,18 +86,25 @@ bool runMenu() {
         switch(userInput){
         case 0:
             break;
-
         case 'q':
             cout << endl << "closing program" << endl;
             break;
+
         case 'p':
             list.write(cout);
             break;
-        case 'd':
+
+        case 'd': {
+            cout << endl << endl << "choose a sensor id" << endl;
+            string idInput = userInputSensorId();
+            cout << "Selected: " << idInput << endl;
+            
             break;
+        }
         case 's':
             break;
-        case 'c':
+        
+        case 'c': {
             if (list.count() == 0) {
                 cout << endl << "the list is empty" << endl; 
             }
@@ -92,6 +112,7 @@ bool runMenu() {
                 cout << endl << "the list has " << list.count() << " entries" << endl;
             }
             break;
+        }
         case 'x':
             cout << endl << "clearing " << list.count() << " items from the list" << endl;
             list.clear();
@@ -102,7 +123,7 @@ bool runMenu() {
             break;
         case '3':
             break;
-        default:
+        default:    
             cout << endl << "invalid entry" << endl;
             break;
         }
@@ -110,9 +131,6 @@ bool runMenu() {
 
 
     }
-
-
-
 	return false;
 }
 
