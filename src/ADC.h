@@ -28,4 +28,6 @@ public:
 	int read(unsigned int channel) const;		// read from the ADC
 	void setResolution(unsigned int resolution);
 	unsigned int getResolution();
+	void randomizeAdcValues();
+	int getRandomValue() const;	
 };

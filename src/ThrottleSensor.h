@@ -16,8 +16,8 @@ private:
 
 
 public:
-	ThrottleSensor(ADC& adcRef, string n, int ch);
+	ThrottleSensor(ADC& adcRef, string n, int ch) ;
 	unsigned int read();
 	float convertToVolt();
-	void print(ostream& out);
+	void print(std::ostream& out) override;
 };

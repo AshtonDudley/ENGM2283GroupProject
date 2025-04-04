@@ -2,22 +2,17 @@
 // Author: Ashton Dudley
 // Lib
 
-//#error "This should fail"
-
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
 
-// Objects
-#include "Sensor.h"
-#include "BrakeSensor.h"
-#include "ThrottleSensor.h"
-#include "ADC.h"
+#include "tests.h"
+#include "menu.h"
 
 // Unit Testing
 #include "tests.h"
-
+using namespace std;
 
 int main(void) {
 
@@ -25,7 +20,7 @@ int main(void) {
     std::cout << "[DEBUG] PROGRAM STARTING" << std::endl;
 
     // Run Unit Test
-    if (!runTests()) {
+    if (!runTests()) { 
         std::cout << "[DEBUG] UNIT TEST FAILED" << std::endl;
         return -1;
     }
@@ -33,13 +28,6 @@ int main(void) {
         std::cout << "[DEBUG] UNIT TEST PASSED" << std::endl;
     }
     
-
-    while (true) {
-        // Program State Machine
-
-        // TODO: Implement state machine dialog
-        break;
-        
-    }
+    while (runMenu()) {} 
     return 0;
 }

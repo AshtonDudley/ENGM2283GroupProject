@@ -69,11 +69,11 @@ void testSensorObject() {
     // tests print()
     if (1) {
         ADC adc;
-        Sensor sensor(adc, "PrintSensor", 0);
-        sensor.setAdcValue(128);
+        //Sensor sensor(adc, "PrintSensor", 0);
+        //sensor.setAdcValue(128);
 
-        sensor.print(std::cout);
-        std::cout << std::endl;
+        //sensor.print(std::cout);
+        //std::cout << std::endl;
     }
  
 

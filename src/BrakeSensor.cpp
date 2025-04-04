@@ -39,7 +39,7 @@ float BrakeSensor::convertToPSI()
 void BrakeSensor::print(std::ostream& out)
 {
 	Sensor::print(out);
-	cout << "Braking: " << braking << "PSI: ";
+	cout << "Braking: " << isBraking() << " PSI: ";
 	out << convertToPSI();
-	cout << endl;
+	cout;
 }

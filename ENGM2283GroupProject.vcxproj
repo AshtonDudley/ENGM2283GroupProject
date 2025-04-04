@@ -22,6 +22,7 @@
     <ClInclude Include="src\ADC.h" />
     <ClInclude Include="src\BrakeSensor.h" />
     <ClInclude Include="src\LinkedList.h" />
+    <ClInclude Include="src\menu.h" />
     <ClInclude Include="src\Sensor.h" />
     <ClInclude Include="src\tests.h" />
     <ClInclude Include="src\ThrottleSensor.h" />
@@ -29,8 +30,8 @@
   <ItemGroup>
     <ClCompile Include="src\ADC.cpp" />
     <ClCompile Include="src\BrakeSensor.cpp" />
-    <ClCompile Include="src\LinkedList.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\menu.cpp" />
     <ClCompile Include="src\Sensor.cpp" />
     <ClCompile Include="src\testADC.cpp" />
     <ClCompile Include="src\testBrake.cpp" />

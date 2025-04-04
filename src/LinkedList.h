@@ -13,15 +13,6 @@
 
 using namespace std;
 
-class SensorNode {
-friend class LinkedList;
-private:
-public:
-	// todo: turn into template ?
-	Sensor* data;	// data stored in the node. 
-	SensorNode* next;			// pointer to next node in list
-	SensorNode(Sensor* x);	// data = x, next = NULL								todo: change to const
-};
 
 template <class T>
 class Node {
@@ -46,11 +37,13 @@ public:
     void store(const T& item);                  // push the item onto the stack
     T& top(void) const;                         // return the item at the top of the stack
     T& retrieve(string sensorID) const;         // search and return item (using searching algorithm)
-    void remove(void);                          // remove the node at the top of the stack
+    bool remove(void);
+    bool remove(T Pointer);                     // remove the node at the top of the stack
     int count(void) const;                      // return count
     bool empty(void) const;                     // check for empty stack
     void clear();                               // clear the list
     void write(std::ostream& out) const;        // send the stored data to out
+    void sort();                                // sorts using bubble sort
 };
 
 template <class T>
@@ -78,7 +71,7 @@ T& stack<T>::top(void) const {
     return start->data;
 }
 
-// Currently a simple while loop. Will need to be replaced with searching algorithm
+// linear search. Must check if list is empty before
 template<class T>
 inline T& stack<T>::retrieve(string sensorID) const {
     Node<T>* current = start;
@@ -88,19 +81,63 @@ inline T& stack<T>::retrieve(string sensorID) const {
         }
         current = current->next;
     }
-    cout << "ID not found: " << sensorID << std::endl;
-    throw std::runtime_error("error");
 
+    throw std::runtime_error("error"); // added to fix github action
 }
+
+// removes top node
 template<class T>
-inline void stack<T>::remove(void) {
+inline bool stack<T>::remove(void) {
     if (empty()) {
-        throw std::runtime_error("error");
+        return false; // added to fix github action warning
     }
+
     Node<T>* temp = start;
     start = start->next;
     delete temp;
     sensorCount--;
+    return true;
+}
+
+// removes specific node
+template<class T>
+inline bool stack<T>::remove(T ptr) {
+    if (empty()) {
+        return false; // added to fix github action warning
+    }
+
+
+    Node<T>* current = start;       
+    Node<T>* prev = nullptr;
+
+    // find node to remove, and modify the linked lisdt
+    while (current != nullptr) {    
+        // checkm if sensor matched sensor to be removed
+        if (current->data->getName() == ptr->getName()) {
+            // check if on the first node
+            if (prev == nullptr) {
+                start->next = current->next;
+            }
+            else {
+                prev->next = current->next;
+            }
+            
+            delete current;
+            sensorCount--;
+            return true;
+        }
+        
+        // move through node
+        prev = current; 
+        current = current->next;
+        
+    }
+
+
+    delete current;
+    delete prev;
+
+    return false;
 }
 
 template<class T>
@@ -123,12 +160,46 @@ inline void stack<T>::clear() {
 template<class T>
 inline void stack<T>::write(std::ostream& out) const {
     Node<T>* current = start;
+    
+    out << endl << "start of list ---> " << endl << endl;
+    
     while (current != nullptr) {
-        out << *(current->data) << std::endl;  // assuming T is a pointer and operator<< is overloaded for *T
+        current->data->print(out); // print sensor data
+        out << endl;    
         current = current->next;
-    }
+    } 
+
+    out << endl << "<--- end of list " << endl;
+
 }
 
+// Bubble Sort
+// source: https://www.programiz.com/dsa/bubble-sort
+template<class T>
+inline void stack<T>::sort() {
+    if (empty()) {
+        return;
+    }
+    
+    // 
+    for (int i = 0; i < sensorCount - 1; i++) {
+        // travel through linked list
+        Node<T>* current = start;
+        Node<T>* nextNode = current->next;
+
+        for (int j = 0; j < sensorCount - i - 1; j++) {
+            // check and swap
+            if (current->data->read() > nextNode->data->read()) {
+                T temp = current->data;
+                current->data = nextNode->data;
+                nextNode->data = temp;
+            }
+        }
+        current = nextNode;
+        nextNode = current->next;
+    }
+
+}
 
 
 
