@@ -13,15 +13,6 @@
 
 using namespace std;
 
-class SensorNode {
-friend class LinkedList;
-private:
-public:
-	// todo: turn into template ?
-	Sensor* data;	// data stored in the node. 
-	SensorNode* next;			// pointer to next node in list
-	SensorNode(Sensor* x);	// data = x, next = NULL								todo: change to const
-};
 
 template <class T>
 class Node {

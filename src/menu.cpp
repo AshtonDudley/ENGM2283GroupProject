@@ -57,9 +57,9 @@ bool runMenu() {
         Sensor* s2 = new Sensor(adc, "s2", 2);
         Sensor* s3 = new Sensor(adc, "s3", 3);
 
-        list.store(s0);
-        list.store(s1);
         list.store(s2);
+        list.store(s1);
+        list.store(s0);
         list.store(s3);
 
     }
