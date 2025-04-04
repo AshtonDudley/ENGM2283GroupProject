@@ -18,11 +18,6 @@
 using namespace std;
 
 
-void randomizeAdcValues(ADC& adc) {
-
-}
-
-
 
 string userInputSensorId(void) {
     
@@ -62,6 +57,7 @@ bool runMenu() {
 
     char userInput = 0;
 
+    adc.randomizeAdcValues();
 
     // test data for list. disable for demo
     if (1) {
@@ -100,6 +96,7 @@ bool runMenu() {
             cout << endl << "closing program" << endl;
             break;
 
+    
         case 'p':
             list.write(cout);
             break;
@@ -144,11 +141,14 @@ bool runMenu() {
         case '1': {
             string id;
             int ch;
-            cout << "snter sensor ID: ";
+
+            cout << "enter sensor ID: ";
             cin >> id;
-            cout << "snter ADC channel (0-7): ";
+            cout << "enter ADC channel: ";
             cin >> ch;
+
             Sensor* s = new Sensor(adc, id, ch);
+            s->setAdcValue(adc.getRandomValue());
             list.store(s);
             cout << "stored generic sensor: " << id << endl;
             break;
@@ -156,11 +156,14 @@ bool runMenu() {
         case '2': {
             string id;
             int ch;
-            cout << "snter brake sensor ID: ";
+
+            cout << "enter brake sensor ID: ";
             cin >> id;
-            cout << "snter ADC channel (0-7): ";
+            cout << "enter ADC channel: ";
             cin >> ch;
+
             BrakeSensor* b = new BrakeSensor(adc, id, ch);
+            b->setAdcValue(adc.getRandomValue());
             list.store(b);
             cout << "stored brake sensor: " << id << endl;
             break;
@@ -168,13 +171,21 @@ bool runMenu() {
         case '3': {
             string id;
             int ch;
+
             cout << "enter throttle sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel (0-7): ";
+            cout << "enter ADC channel: ";
             cin >> ch;
+
             ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
+            t->setAdcValue(adc.getRandomValue());
             list.store(t);
             cout << "stored throttle sensor: " << id << endl;
+            break;
+        }
+        case 'r': {
+            adc.randomizeAdcValues();
+            cout << "updated values from ADC" << endl;
             break;
         }
         default:    

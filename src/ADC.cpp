@@ -4,6 +4,10 @@
 #include "ADC.h"
 #include <cmath>
 #include <stdexcept>
+#include <cstdlib>   
+#include <ctime>     
+
+using namespace std;
 
 ADC::ADC(unsigned int resolution, unsigned int numChannels)
 	: adcResolution(resolution), buffer(numChannels, 0) {}
@@ -33,4 +37,27 @@ void ADC::setResolution(unsigned int resolution) {
 
 unsigned int ADC::getResolution() {
 	return adcResolution;
+}
+
+void ADC::randomizeAdcValues() {
+	srand(static_cast<unsigned int>(std::time(nullptr)));  // see M03
+	
+	for (int i = 0; i < buffer.size(); i++) {
+		int maxValue = (1 << adcResolution) - 1;	// 
+		int randomValue = rand() % (maxValue + 1);
+		setChannelValue(i, randomValue);
+	}
+}
+
+int ADC::getRandomValue() const {
+	
+	// had to add to prevent retriggering 
+	static bool ranOnce = false;
+	if (!ranOnce) {
+		srand(static_cast<unsigned int>(time(nullptr)));
+		ranOnce = true;
+	}
+
+	int maxValue = (1 << adcResolution) - 1;
+	return rand() % (maxValue + 1);
 }
