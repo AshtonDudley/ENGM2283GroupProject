@@ -1,6 +1,7 @@
 //file: BreakSensor.cpp
 // Author: Jack Parlee
 #include "BrakeSensor.h"
+using namespace std;
 
 BrakeSensor::BrakeSensor(ADC& adcRef, std::string n, int ch)
 	: Sensor(adcRef, n, ch), braking(false) { }
@@ -13,21 +14,30 @@ unsigned int BrakeSensor::read()
 bool BrakeSensor::isBraking(void)
 {
 	if (currentValue > 10) {
-		return true;
+		return braking = true;
 	}
 	else {
-		return false;
+		return braking = false;
 	}
 }
 
 float BrakeSensor::convertToPSI() 
 {
-	return 0.0f;
+	float PSI;
+	int maxPSI = 100;
+	int minPSI = 0;
+	int minADC = 0;
+	int maxADC = 1028;
+
+	PSI = minPSI + (((currentValue - minADC) * (maxPSI - minPSI)) / (maxADC - minADC));
+
+	return PSI;
 }
 
-void BrakeSensor::print(std::ostream& out) const
+void BrakeSensor::print(std::ostream& out)
 {
 	Sensor::print(out);
-		//print if its breaking
-		//print psi
+	cout << "Braking: " << braking << "PSI: ";
+	out << convertToPSI();
+	cout << endl;
 }

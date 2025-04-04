@@ -18,5 +18,5 @@ public:
 	unsigned int read();
 	bool isBraking(void);
 	float convertToPSI();
-	void print(std::ostream& out) const;
+	void print(std::ostream& out);
 };

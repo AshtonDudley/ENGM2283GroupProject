@@ -14,13 +14,16 @@ void testBrakeObject() {
         BrakeSensor brake(adc, "brake", 1);
 
         cout << brake.getName() << endl;
-        brake.setAdcValue(100);
+        brake.setAdcValue(150);
         cout << brake.read() << endl;
-        cout << brake.isBraking() << endl;
+        cout << "Braking: " << brake.isBraking() << endl;
+        cout << "PSI: " << brake.convertToPSI() << endl;
+        brake.print(cout);
+       
 
         //assert(brake.read() == 100);
     }
-    std::cout << "[TEST] testBrakeObject passed. \n" << std::endl;
+    cout << "[TEST] testBrakeObject passed. \n" << endl;
 
     return;
 }
