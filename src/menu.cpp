@@ -42,7 +42,11 @@ char printMenu() {
     return userInput; // default: 0
 }
 
-
+//void printData(&) {
+//
+//
+//
+//}
 
 
 bool runMenu() {
@@ -52,7 +56,15 @@ bool runMenu() {
 
     char userInput = 0;
 
-    // test functions of list 
+
+    // test data for list. disable for demo
+    if (1) {
+        Sensor* s0 = new Sensor(adc, "Sensor 0", 0);
+        Sensor* s1 = new Sensor(adc, "Sensor 1", 1);
+
+        list.store(s0);
+        list.store(s1);
+    }
 
 
     while (userInput != 'q') {
@@ -67,6 +79,7 @@ bool runMenu() {
         case 'q':
             break;
         case 'p':
+            //printData();
             break;
         case 'd':
             break;
