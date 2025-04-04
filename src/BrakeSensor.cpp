@@ -7,7 +7,7 @@ BrakeSensor::BrakeSensor(ADC& adcRef, std::string n, int ch)
 
 unsigned int BrakeSensor::read()
 {
-	return 0;
+	return Sensor::read(); 
 }
 
 bool BrakeSensor::isBraking(void)
@@ -27,4 +27,7 @@ float BrakeSensor::convertToPSI()
 
 void BrakeSensor::print(std::ostream& out) const
 {
+	Sensor::print(out);
+		//print if its breaking
+		//print psi
 }
