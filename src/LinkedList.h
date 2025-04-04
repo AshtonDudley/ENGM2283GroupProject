@@ -81,11 +81,7 @@ inline T& stack<T>::retrieve(string sensorID) const {
         current = current->next;
     }
 
-    cout << "ID not found: " << sensorID << std::endl;
-    
     throw std::runtime_error("error"); // added to fix github action
-    // return nullptr; // doesn't work 
-
 }
 
 // removes top node
@@ -109,11 +105,38 @@ inline bool stack<T>::remove(T ptr) {
         return false; // added to fix github action warning
     }
 
-    Node<T>* temp = start;
-    start = start->next;
-    delete temp;
-    sensorCount--;
-    return true;
+
+    Node<T>* current = start;       
+    Node<T>* prev = nullptr;
+
+    // find node to remove, and modify the linked lisdt
+    while (current != nullptr) {    
+        // checkm if sensor matched sensor to be removed
+        if (current->data->getName() == ptr->getName()) {
+            // check if on the first node
+            if (prev == nullptr) {
+                start->next = current->next;
+            }
+            else {
+                prev->next = current->next;
+            }
+            
+            delete current;
+            sensorCount--;
+            return true;
+        }
+        
+        // move through node
+        prev = current; 
+        current = current->next;
+        
+    }
+
+
+    delete current;
+    delete prev;
+
+    return false;
 }
 
 template<class T>

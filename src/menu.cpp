@@ -66,7 +66,10 @@ bool runMenu() {
 
         BrakeSensor* b0 = new BrakeSensor(adc, "b0", 4);
         ThrottleSensor* t0 = new ThrottleSensor(adc, "t0", 5);
-    
+   
+        b0->print(cout);
+        t0->print(cout);
+
         list.store(s2);
         list.store(s1);
         list.store(s0);
@@ -103,10 +106,15 @@ bool runMenu() {
                 string idInput = userInputSensorId();
                 cout << "Selected: " << idInput << endl;
             
-                Sensor* result = list.retrieve("s0");
-                result->getName();
+                try {
+                    Sensor* result = list.retrieve(idInput);
+                    cout << endl << "removed: " << result->getName() << endl;
+                    list.remove(result);
+                }
+                catch (const std::runtime_error& e){
+                    cout << "unable to delete... id not found" << endl;
+                }
                 
-                list.remove(result);
             }
             break;
         }
