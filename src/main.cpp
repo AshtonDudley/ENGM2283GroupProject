@@ -27,7 +27,7 @@ int main(void) {
     std::cout << "[DEBUG] PROGRAM STARTING" << std::endl;
 
     // Run Unit Test
-    if (!runTests()) {
+    if (!runTests()) { 
         std::cout << "[DEBUG] UNIT TEST FAILED" << std::endl;
         return -1;
     }
@@ -35,15 +35,14 @@ int main(void) {
         std::cout << "[DEBUG] UNIT TEST PASSED" << std::endl;
     }
     
-    ADC adc(12, 8);  // 12-bit ADC, 8 channels
+    ADC adc(12, 8);  // 12-bit ADC with 8 channels
     stack<Sensor*> sensorDB;
     int channelCounter = 0;
-
     char ch;
     string id;
 
     while (true) {
-        cout << "\nMenu Options:\n";
+        cout << "\n=== SENSOR MENU ===\n";
         cout << "t = add throttle sensor\n";
         cout << "b = add brake sensor\n";
         cout << "d = delete sensor by ID\n";
@@ -51,8 +50,8 @@ int main(void) {
         cout << "s = sort sensors by value\n";
         cout << "p = print all sensors\n";
         cout << "f = write sensors to file\n";
-        cout << "q = quit\n\n";
-        cout << "Enter your choice: ";
+        cout << "q = quit\n";
+        cout << "Enter choice: ";
         cin >> ch;
 
         if (ch == 't') {
@@ -60,15 +59,17 @@ int main(void) {
             cin >> id;
             ThrottleSensor* t = new ThrottleSensor(adc, id, channelCounter++);
             sensorDB.store(t);
-            cout << "Throttle sensor added." << endl;
+            cout << "Throttle sensor added.\n";
         }
+
         else if (ch == 'b') {
             cout << "Enter ID for brake sensor: ";
             cin >> id;
             BrakeSensor* b = new BrakeSensor(adc, id, channelCounter++);
             sensorDB.store(b);
-            cout << "Brake sensor added." << endl;
+            cout << "Brake sensor added.\n";
         }
+
         else if (ch == 'd') {
             cout << "Enter sensor ID to delete: ";
             cin >> id;
@@ -92,15 +93,17 @@ int main(void) {
                 temp.remove();
             }
 
-            cout << (found ? "Sensor deleted." : "Sensor not found.") << endl;
+            cout << (found ? "Sensor deleted.\n" : "Sensor not found.\n");
         }
+
         else if (ch == 'c') {
             while (!sensorDB.empty()) {
                 delete sensorDB.top();
                 sensorDB.remove();
             }
-            cout << "All sensors cleared." << endl;
+            cout << "All sensors cleared.\n";
         }
+
         else if (ch == 's') {
             vector<Sensor*> sensors;
             while (!sensorDB.empty()) {
@@ -116,40 +119,43 @@ int main(void) {
                 sensorDB.store(*it);
             }
 
-            cout << "Sensors sorted by value (descending)." << endl;
+            cout << "Sensors sorted (descending by value).\n";
         }
+
         else if (ch == 'p') {
             cout << "sentinel --> ";
             sensorDB.write(cout);
-            cout << "NULL" << endl;
+            cout << "NULL\n";
         }
+
         else if (ch == 'f') {
             ofstream fout("output.txt");
             if (!fout) {
-                cerr << "Failed to open output.txt for writing!" << endl;
+                cerr << "Failed to open file.\n";
             }
             else {
                 fout << "sentinel --> ";
                 sensorDB.write(fout);
-                fout << "NULL" << endl;
+                fout << "NULL\n";
                 fout.close();
-                cout << "Written to output.txt" << endl;
+                cout << "Written to output.txt\n";
             }
         }
+
         else if (ch == 'q') {
             break;
         }
+
         else {
-            cout << "Invalid option. Try again." << endl;
+            cout << "Invalid choice.\n";
         }
     }
 
-    // Final cleanup
+    // Cleanup before exiting
     while (!sensorDB.empty()) {
         delete sensorDB.top();
         sensorDB.remove();
     }
 
-   
     return 0;
 }
