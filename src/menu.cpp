@@ -60,7 +60,7 @@ bool runMenu() {
     adc.randomizeAdcValues();
 
     // test data for list. disable for demo
-    if (1) {
+    if (false) {
         Sensor* s0 = new Sensor(adc, "s0", 0);
         Sensor* s1 = new Sensor(adc, "s1", 1);
         Sensor* s2 = new Sensor(adc, "s2", 2);
