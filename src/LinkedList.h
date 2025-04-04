@@ -37,7 +37,7 @@ public:
     void store(const T& item);                  // push the item onto the stack
     T& top(void) const;                         // return the item at the top of the stack
     T& retrieve(string sensorID) const;         // search and return item (using searching algorithm)
-    void remove(void);                          // remove the node at the top of the stack
+    bool remove(void);                          // remove the node at the top of the stack
     int count(void) const;                      // return count
     bool empty(void) const;                     // check for empty stack
     void clear();                               // clear the list
@@ -80,18 +80,21 @@ inline T& stack<T>::retrieve(string sensorID) const {
         current = current->next;
     }
     cout << "ID not found: " << sensorID << std::endl;
-    throw std::runtime_error("error"); // added to fix github action 
+    
+    throw std::runtime_error("error"); // added to fix github actio
+    // return nullptr; // doesn't work 
 
 }
 template<class T>
-inline void stack<T>::remove(void) {
+inline bool stack<T>::remove(void) {
     if (empty()) {
-        throw std::runtime_error("error"); // added to fix github action warning
+        return false; // added to fix github action warning
     }
     Node<T>* temp = start;
     start = start->next;
     delete temp;
     sensorCount--;
+    return true;
 }
 
 template<class T>

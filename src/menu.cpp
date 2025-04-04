@@ -99,6 +99,11 @@ bool runMenu() {
             string idInput = userInputSensorId();
             cout << "Selected: " << idInput << endl;
             
+            Sensor* result = list.retrieve("s0");
+            result->getName();
+                
+            list.remove();
+
             break;
         }
         case 's':
