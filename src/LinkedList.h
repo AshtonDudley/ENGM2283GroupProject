@@ -80,7 +80,7 @@ inline T& stack<T>::retrieve(string sensorID) const {
         current = current->next;
     }
     cout << "ID not found: " << sensorID << std::endl;
-    throw std::runtime_error("error");
+    throw std::runtime_error("error"); // added to fix github action 
 
 }
 template<class T>
