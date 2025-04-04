@@ -31,8 +31,8 @@ float ThrottleSensor::convertToVolt()
 void ThrottleSensor::print(ostream& out)
 {
 	Sensor::print(out);
-	cout << "Min Throttle: " << minThrottle << "Max Throttle: " << maxThrottle << "Volts: ";
+	out << "Min Throttle: " << minThrottle << "Max Throttle: " << maxThrottle << "Volts: ";
 	out << convertToVolt();
-	cout << endl;
+	out << endl;
 }
 
