@@ -120,8 +120,12 @@ inline void stack<T>::clear() {
 template<class T>
 inline void stack<T>::write(std::ostream& out) const {
     Node<T>* current = start;
+    
+    out << endl;
+    
     while (current != nullptr) {
-        out << *(current->data) << std::endl;  // assuming T is a pointer and operator<< is overloaded for *T
+        current->data->print(out); // print sensor data
+        out << endl;    
         current = current->next;
     }
 }

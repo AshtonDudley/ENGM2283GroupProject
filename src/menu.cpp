@@ -42,13 +42,6 @@ char printMenu() {
     return userInput; // default: 0
 }
 
-//void printData(&) {
-//
-//
-//
-//}
-
-
 bool runMenu() {
 
     ADC adc(12, 8);  // 12-bit ADC with 8 channels
@@ -59,11 +52,16 @@ bool runMenu() {
 
     // test data for list. disable for demo
     if (1) {
-        Sensor* s0 = new Sensor(adc, "Sensor 0", 0);
-        Sensor* s1 = new Sensor(adc, "Sensor 1", 1);
+        Sensor* s0 = new Sensor(adc, "s0", 0);
+        Sensor* s1 = new Sensor(adc, "s1", 1);
+        Sensor* s2 = new Sensor(adc, "s2", 2);
+        Sensor* s3 = new Sensor(adc, "s3", 3);
 
         list.store(s0);
         list.store(s1);
+        list.store(s2);
+        list.store(s3);
+
     }
 
 
@@ -77,25 +75,35 @@ bool runMenu() {
             break;
 
         case 'q':
+            cout << endl << "closing program" << endl;
             break;
         case 'p':
-            //printData();
+            list.write(cout);
             break;
         case 'd':
             break;
         case 's':
             break;
         case 'c':
+            if (list.count() == 0) {
+                cout << endl << "the list is empty" << endl; 
+            }
+            else {
+                cout << endl << "the list has " << list.count() << " entries" << endl;
+            }
             break;
         case 'x':
+            cout << endl << "clearing " << list.count() << " items from the list" << endl;
+            list.clear();
             break;
-        case 1:
+        case '1':
             break;
-        case 2:
+        case '2':
             break;
-        case 3:
+        case '3':
             break;
         default:
+            cout << endl << "invalid entry" << endl;
             break;
         }
 
