@@ -40,7 +40,7 @@ char printMenu() {
     cout << "s - sort by sensors current value" << endl;
     cout << "c - count total number of sensors" << endl;    // say if list is empty 
     cout << "x - clear the list" << endl; 
-    cout << "r - set random ADC values" << endl;             // used to simulate an ADC
+    //cout << "r - set random ADC values" << endl;             // used to simulate an ADC
     
 
     cout << "q - quit" << endl << endl;

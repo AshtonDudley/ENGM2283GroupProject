@@ -1,5 +1,5 @@
 //file: BreakSensor.cpp
-// Author: Jack Parlee
+// Author: Jack Parlee and Romen Lawen
 #include "BrakeSensor.h"
 using namespace std;
 
