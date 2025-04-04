@@ -20,7 +20,10 @@ float ThrottleSensor::convertToVolt()
 	int minADC = 0;
 	int maxADC = 1028;
 
-	Volts = minThrottle + (((currentValue - minADC) * (maxThrottle - minThrottle)) / (maxADC - minADC));
+	float range = static_cast<float>(maxThrottle - minThrottle);
+	float adcRange = static_cast<float>(maxADC - minADC);
+	Volts = minThrottle + ((static_cast<float>(currentValue - minADC) * range) / adcRange);
+
 
 	return Volts;
 }
