@@ -19,6 +19,20 @@ using namespace std;
 
 
 
+int userAdcChannelInput(void) {
+    int ch;
+    cout << "enter ADC channel: ";
+    
+    // Check for valid input
+    while (!(cin >> ch)) {
+        cout << "invalid input, please enter a valid integer" << endl;
+        cin.clear(); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    }
+    return ch;
+}
+
+
 string userInputSensorId(void) {
     
     string userInput;
@@ -93,7 +107,12 @@ bool runMenu() {
 
     
         case 'p':
-            list.write(cout);
+            if (list.empty()) {
+                cout << endl << "unable to delete... the list is empty" << endl;
+            }
+            else { 
+                list.write(cout);
+            }
             break;
 
         case 'd': {
@@ -118,8 +137,13 @@ bool runMenu() {
             break;
         }
         case 's':
-            cout << endl << "sorting list" << endl;
-            list.sort();
+            if (list.empty()) {
+                cout << endl << "the list is empty" << endl;
+            }
+            else {
+                cout << endl << "sorting list" << endl;
+                list.sort();
+            }
             break;
         
         case 'c': {
@@ -132,8 +156,13 @@ bool runMenu() {
             break;
         }
         case 'x':
-            cout << endl << "clearing " << list.count() << " items from the list" << endl;
-            list.clear();
+            if (list.empty()) {
+                cout << endl << "the list is empty" << endl;
+            }
+            else {
+                cout << endl << "clearing " << list.count() << " items from the list" << endl;
+                list.clear();
+            }
             break;
         case '1': {
             string id;
@@ -141,8 +170,8 @@ bool runMenu() {
 
             cout << "enter sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
+
 
             Sensor* s = new Sensor(adc, id, ch);
             s->setAdcValue(adc.getRandomValue());
@@ -156,8 +185,8 @@ bool runMenu() {
 
             cout << "enter brake sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
+
 
             BrakeSensor* b = new BrakeSensor(adc, id, ch);
             b->setAdcValue(adc.getRandomValue());
@@ -171,8 +200,7 @@ bool runMenu() {
 
             cout << "enter throttle sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
 
             ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
             t->setAdcValue(adc.getRandomValue());
