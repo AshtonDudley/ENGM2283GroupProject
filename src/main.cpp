@@ -1,17 +1,20 @@
 // main.cpp
 // Author: Ashton Dudley
-// Lib
 
+
+// lib
 #include <string>
 #include <vector>
 #include <iostream>
 #include <fstream>
 
+// includes
 #include "tests.h"
 #include "menu.h"
 
 // Unit Testing
 #include "tests.h"
+
 using namespace std;
 
 int main(void) {

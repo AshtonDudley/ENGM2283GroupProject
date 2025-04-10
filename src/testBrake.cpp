@@ -1,5 +1,5 @@
 // testBrake.cpp
-// Author: Jack Parlee 
+// Author: Jack Parlee and Romen Lawen
 
 #include "tests.h"
 

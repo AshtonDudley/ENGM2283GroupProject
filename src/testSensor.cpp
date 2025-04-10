@@ -1,5 +1,5 @@
 // testSensor.cpp
-// Author: Ashton Dudley
+// Author: Ashton Dudley and Romen Lawen
 
 #include "tests.h"
 

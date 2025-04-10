@@ -15,8 +15,26 @@
 #include "ADC.h"
 #include "LinkedList.h"  
 
+#define ADC_SIZE 32
+
 using namespace std;
 
+
+
+int userAdcChannelInput(void) {
+    int ch;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
+    cout << "enter ADC channel: ";
+    // Check for valid input
+    while (!(cin >> ch)) {
+        cout << "please enter a valid integer" << endl;
+        cin.clear(); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    }
+    return ch;
+}
 
 
 string userInputSensorId(void) {
@@ -40,7 +58,7 @@ char printMenu() {
     cout << "s - sort by sensors current value" << endl;
     cout << "c - count total number of sensors" << endl;    // say if list is empty 
     cout << "x - clear the list" << endl; 
-    cout << "r - set random ADC values" << endl;             // used to simulate an ADC
+    //cout << "r - set random ADC values" << endl;             // used to simulate an ADC
     
 
     cout << "q - quit" << endl << endl;
@@ -52,7 +70,7 @@ char printMenu() {
 
 bool runMenu() {
 
-    ADC adc(12, 8);  // 12-bit ADC with 8 channels
+    ADC adc(12, ADC_SIZE);  // 12-bit ADC with 32 channels
     stack<Sensor*> list;
 
     char userInput = 0;
@@ -76,7 +94,6 @@ bool runMenu() {
         list.store(t0);
         list.store(b0);
     }
-
     
     while (userInput != 'q') {
 
@@ -93,7 +110,12 @@ bool runMenu() {
 
     
         case 'p':
-            list.write(cout);
+            if (list.empty()) {
+                cout << endl << "unable to print... the list is empty" << endl;
+            }
+            else { 
+                list.write(cout);
+            }
             break;
 
         case 'd': {
@@ -118,8 +140,13 @@ bool runMenu() {
             break;
         }
         case 's':
-            cout << endl << "sorting list" << endl;
-            list.sort();
+            if (list.empty()) {
+                cout << endl << "unable to sort... the list is empty" << endl;
+            }
+            else {
+                cout << endl << "sorting list" << endl;
+                list.sort();
+            }
             break;
         
         case 'c': {
@@ -132,8 +159,13 @@ bool runMenu() {
             break;
         }
         case 'x':
-            cout << endl << "clearing " << list.count() << " items from the list" << endl;
-            list.clear();
+            if (list.empty()) {
+                cout << endl << "no items to delete... the list is empty" << endl;
+            }
+            else {
+                cout << endl << "clearing " << list.count() << " items from the list" << endl;
+                list.clear();
+            }
             break;
         case '1': {
             string id;
@@ -141,13 +173,17 @@ bool runMenu() {
 
             cout << "enter sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
 
-            Sensor* s = new Sensor(adc, id, ch);
-            s->setAdcValue(adc.getRandomValue());
-            list.store(s);
-            cout << "stored generic sensor: " << id << endl;
+
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                Sensor* s = new Sensor(adc, id, ch);
+                s->setAdcValue(adc.getRandomValue());
+                list.store(s);
+                cout << "stored generic sensor: " << id << endl;
+            }
             break;
         }
         case '2': {
@@ -156,13 +192,17 @@ bool runMenu() {
 
             cout << "enter brake sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
 
-            BrakeSensor* b = new BrakeSensor(adc, id, ch);
-            b->setAdcValue(adc.getRandomValue());
-            list.store(b);
-            cout << "stored brake sensor: " << id << endl;
+
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                BrakeSensor* b = new BrakeSensor(adc, id, ch);
+                b->setAdcValue(adc.getRandomValue());
+                list.store(b);
+                cout << "stored brake sensor: " << id << endl;
+            }
             break;
         }
         case '3': {
@@ -171,13 +211,16 @@ bool runMenu() {
 
             cout << "enter throttle sensor ID: ";
             cin >> id;
-            cout << "enter ADC channel: ";
-            cin >> ch;
+            ch = userAdcChannelInput();
 
-            ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
-            t->setAdcValue(adc.getRandomValue());
-            list.store(t);
-            cout << "stored throttle sensor: " << id << endl;
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
+                t->setAdcValue(adc.getRandomValue());
+                list.store(t);
+                cout << "stored throttle sensor: " << id << endl;
+            }
             break;
         }
         case 'r': {
@@ -195,4 +238,3 @@ bool runMenu() {
     }
 	return false;
 }
-
