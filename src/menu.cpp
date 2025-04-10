@@ -15,17 +15,21 @@
 #include "ADC.h"
 #include "LinkedList.h"  
 
+#define ADC_SIZE 32
+
 using namespace std;
 
 
 
 int userAdcChannelInput(void) {
     int ch;
-    cout << "enter ADC channel: ";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     
+    cout << "enter ADC channel: ";
     // Check for valid input
     while (!(cin >> ch)) {
-        cout << "invalid input, please enter a valid integer" << endl;
+        cout << "please enter a valid integer" << endl;
         cin.clear(); 
         cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
     }
@@ -66,7 +70,7 @@ char printMenu() {
 
 bool runMenu() {
 
-    ADC adc(12, 8);  // 12-bit ADC with 8 channels
+    ADC adc(12, ADC_SIZE);  // 12-bit ADC with 32 channels
     stack<Sensor*> list;
 
     char userInput = 0;
@@ -90,7 +94,6 @@ bool runMenu() {
         list.store(t0);
         list.store(b0);
     }
-
     
     while (userInput != 'q') {
 
@@ -108,7 +111,7 @@ bool runMenu() {
     
         case 'p':
             if (list.empty()) {
-                cout << endl << "unable to delete... the list is empty" << endl;
+                cout << endl << "unable to print... the list is empty" << endl;
             }
             else { 
                 list.write(cout);
@@ -138,7 +141,7 @@ bool runMenu() {
         }
         case 's':
             if (list.empty()) {
-                cout << endl << "the list is empty" << endl;
+                cout << endl << "unable to sort... the list is empty" << endl;
             }
             else {
                 cout << endl << "sorting list" << endl;
@@ -157,7 +160,7 @@ bool runMenu() {
         }
         case 'x':
             if (list.empty()) {
-                cout << endl << "the list is empty" << endl;
+                cout << endl << "no items to delete... the list is empty" << endl;
             }
             else {
                 cout << endl << "clearing " << list.count() << " items from the list" << endl;
@@ -173,10 +176,14 @@ bool runMenu() {
             ch = userAdcChannelInput();
 
 
-            Sensor* s = new Sensor(adc, id, ch);
-            s->setAdcValue(adc.getRandomValue());
-            list.store(s);
-            cout << "stored generic sensor: " << id << endl;
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                Sensor* s = new Sensor(adc, id, ch);
+                s->setAdcValue(adc.getRandomValue());
+                list.store(s);
+                cout << "stored generic sensor: " << id << endl;
+            }
             break;
         }
         case '2': {
@@ -188,10 +195,14 @@ bool runMenu() {
             ch = userAdcChannelInput();
 
 
-            BrakeSensor* b = new BrakeSensor(adc, id, ch);
-            b->setAdcValue(adc.getRandomValue());
-            list.store(b);
-            cout << "stored brake sensor: " << id << endl;
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                BrakeSensor* b = new BrakeSensor(adc, id, ch);
+                b->setAdcValue(adc.getRandomValue());
+                list.store(b);
+                cout << "stored brake sensor: " << id << endl;
+            }
             break;
         }
         case '3': {
@@ -202,10 +213,14 @@ bool runMenu() {
             cin >> id;
             ch = userAdcChannelInput();
 
-            ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
-            t->setAdcValue(adc.getRandomValue());
-            list.store(t);
-            cout << "stored throttle sensor: " << id << endl;
+            if (ch > ADC_SIZE) {
+                cout << "ADC value out of range" << endl;
+            } else {
+                ThrottleSensor* t = new ThrottleSensor(adc, id, ch);
+                t->setAdcValue(adc.getRandomValue());
+                list.store(t);
+                cout << "stored throttle sensor: " << id << endl;
+            }
             break;
         }
         case 'r': {
@@ -223,4 +238,3 @@ bool runMenu() {
     }
 	return false;
 }
-
