@@ -24,6 +24,7 @@ public:
     Node(const T& x); // data = x, next = NULL      
 };
 
+// FILO stack
 template <class T>
 class stack {
 private:
@@ -37,8 +38,8 @@ public:
     void store(const T& item);                  // push the item onto the stack
     T& top(void) const;                         // return the item at the top of the stack
     T& retrieve(string sensorID) const;         // search and return item (using searching algorithm)
-    bool remove(void);
-    bool remove(T Pointer);                     // remove the node at the top of the stack
+    bool remove(void);                          // remove the node at the top of the stack
+    bool remove(T Pointer);                     // remove the selected node
     int count(void) const;                      // return count
     bool empty(void) const;                     // check for empty stack
     void clear();                               // clear the list
@@ -152,6 +153,7 @@ inline bool stack<T>::empty(void) const {
 template<class T>
 inline void stack<T>::clear() {
     while (!empty()) {
+        // remove current node
         remove();
     }
 }
@@ -180,7 +182,6 @@ inline void stack<T>::sort() {
         return;
     }
     
-    // 
     for (int i = 0; i < sensorCount - 1; i++) {
         // travel through linked list
         Node<T>* current = start;
