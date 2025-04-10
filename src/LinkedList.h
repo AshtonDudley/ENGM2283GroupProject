@@ -95,7 +95,10 @@ inline bool stack<T>::remove(void) {
 
     Node<T>* temp = start;
     start = start->next;
+    
+    delete temp->data;
     delete temp;
+    
     sensorCount--;
     return true;
 }
@@ -123,7 +126,9 @@ inline bool stack<T>::remove(T ptr) {
                 prev->next = current->next;
             }
             
+            delete current->data; // added to fix possible memory leak
             delete current;
+
             sensorCount--;
             return true;
         }
